@@ -123,7 +123,45 @@
         
           <h1 id="accern-data-feed">Accern Data Feed</h1>
 
-<h2 id="authentication">Authentication</h2>
+<h2 id="overview">Overview</h2>
+
+<p>We will provide you a link with authorization token (one per user) which you can use to hit our servers, once in 10 seconds (or higher/lower based on mutually agreed terms) with the access token in the header. The return response from the API will be a JSON object with up to 100 JSON documents. Each document corresponds to one article. You can also flatten the JSON documents and save them as rows in a CSV file. We have provided a set of Ruby scripts that can download and save the data in JSON or CSV format, as needed. Please scroll to the bottom of this document for instructions on how to run these scripts.</p>
+
+<h2 id="backfill">Backfill</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?last_id=43211&amp;token=YOUR_TOKEN"</span>
+</code></pre>
+<p>API caches last 30 days of data. Your first request to the URL will fetch 100 documents from the beginning of that time period. For your next request you should use the id of the last document received to fetch the next 100 articles. Last document id should be used in URL like  http://feed.accern.com/v3/alphas?last_id=43211
+where 43211 is the id for last document received, or last_id. Once you have caught up to the current data stream, and there are no more documents available, you will get a response with 0 documents. It is suggested that you loop through this process after every 10 seconds once you have caught up to the current stream.</p>
+
+<h2 id="filters">Filters</h2>
+
+<p>You can filter the API response using the following parameters.
+1. Assigning last_id: Assigning last_id will help you get the real-time stream without duplication. It will fetch the data from the last_id onwards. Refer to the Backfill section and Ruby scripts for usage details.</p>
+
+<ol>
+<li><p>Assigning ticker: By providing ticker symbol in the URL, you can monitor a portfolio of companies. For example, http://feed.accern.com/v3
+/alphas?ticker=msft
+will give you only data related to Microsoft. You can provide upto 50 companies in each request (comma separated, like ticker=msft,jpm,GOOG,FB). If you seek to increase this limit, let us know and we will work something out. If you don&rsquo;t provide any ticker value, you will get ALL data.</p></li>
+<li><p>Assigning index: You can also filter our data by index. Currently, we support S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, BARRON&rsquo;S 400, DOW 30. You should use the following values to access index-specific data.
+Index ==&gt; Value you should use
+S&amp;P 500 ==&gt; sp500
+Russell 1000 ==&gt; russell1000
+Russell 3000 ==&gt; russell3000
+Wilshire 5000 ==&gt; wilshire5000
+Barron&rsquo;s 400 ==&gt; barrons400
+DOW 30 ==&gt; dow30</p></li>
+</ol>
+
+<p>Currently, you can only request one index at a time. Here is an example that shows how to get all S&amp;P 500 data: http://feed.accern.com/v3/alphas?index=sp500
+If you do not provide any filter information, you will receive all data (including possible duplicates). I recommend that you use at least the last_id filter.
+Ruby Scripts
+The zip file should contain 4 Ruby scripts - 2 helper scripts, and 2 executables.</p>
+
+<p>If you want the data in JSON format, please run ruby alpha_json.rb in the terminal. It will import the data in feed.json file. You need to provide your access token in the second line of alpha_json.rb</p>
+
+<p>If you want the data in CSV format, please run ruby alpha_csv.rb instead. Please note that the CSV format is just the flattened version of the JSON file. It will import the data in feed.csv file. You need to provide your access token in the second line of alpha_csv.rb</p>
+
+<p>Please do not run both the scripts at the same time as they share the same last_id.</p>
 
       </div>
       <div class="dark-box">
