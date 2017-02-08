@@ -113,7 +113,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='https://github.com/Accern/slate' target='_blank'>Contribute to Documentation</a></li>
+            <li><a href='https://github.com/Accern/docs' target='_blank'>Contribute to Documentation</a></li>
             <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -121,47 +121,232 @@
       <div class="dark-box"></div>
       <div class="content">
         
-          <h1 id="accern-data-feed">Accern Data Feed</h1>
+          <h1 id="accern-api">Accern API</h1>
 
-<h2 id="overview">Overview</h2>
+<h2 id="authentication">Authentication</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'uri'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
 
-<p>We will provide you a link with authorization token (one per user) which you can use to hit our servers, once in 10 seconds (or higher/lower based on mutually agreed terms) with the access token in the header. The return response from the API will be a JSON object with up to 100 JSON documents. Each document corresponds to one article. You can also flatten the JSON documents and save them as rows in a CSV file. We have provided a set of Ruby scripts that can download and save the data in JSON or CSV format, as needed. Please scroll to the bottom of this document for instructions on how to run these scripts.</p>
+<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace TOKEN above</p>
+</blockquote>
+
+<p>To authenticate provide your authentication token in the url. We provide the authentication token in your welcome email.</p>
+
+<h2 id="feed">Feed</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above code returns the most recent 100 documents.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1774184</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"589b44a569fe9f7f77024f4a"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"article_sentiment"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.098</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_traffic"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blog"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://feedproxy.google.com/~r/RedmondPie/~3/mF7K04DF1y4/"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"correlations"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, BARRON'S 400, NASDAQ 100"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North America"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Technology"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NASDAQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Computer Manufacturing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQ0010169500001000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBG000B9XRY4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"competitors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"GOOG"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"HPQ"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amazon.com, Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, NASDAQ 100"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North America"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Consumer Services"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMZN"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NASDAQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Catalog/Specialty Distribution"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQ0021695200001000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBG000BVPV84"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"competitors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"BKS"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_author_rank"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recruitment"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Layoff"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_impact_score"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"overall"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.88471673254282</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"on_entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMZN"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"event_source_rank"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sub-theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"acting_party"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"first_mention"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"harvested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-08 16:17:39 UTC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"overall_author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"overall_source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"589a6b6469fe9f7f70ac1df6"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"story_saturation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_sentiment"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.072</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_shares"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<p><code class="prettyprint">GET http://feed.accern.com/v3/alphas?token=TOKEN</code></p>
+
+<p>By default this request will return the most recent 100 documents.</p>
+
+<h2 id="filtering">Filtering</h2>
+
+<blockquote>
+<p>Filter by last_id</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?last_id=1774184&amp;token=TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Filter by index</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?index=sp500&amp;token=TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Filter by ticker</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?ticker=aapl,amzn&amp;token=TOKEN"</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>last_id</td>
+<td>Returns the latest 100 documents that came after the provided id.  Used to prevent duplicates while keeping in sync (see <strong>polling</strong> section).</td>
+</tr>
+<tr>
+<td>index</td>
+<td>Filters documents by the index, see below table for supported indexes.</td>
+</tr>
+<tr>
+<td>ticker</td>
+<td>Filters documents by ticker</td>
+</tr>
+</tbody></table>
+
+<h3 id="allowed-index-values">Allowed index values</h3>
+
+<table><thead>
+<tr>
+<th>index</th>
+<th>expected query string value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>S&amp;P 500</td>
+<td>sp500</td>
+</tr>
+<tr>
+<td>Russell 1000</td>
+<td>russell1000</td>
+</tr>
+<tr>
+<td>Russell 3000</td>
+<td>russell3000</td>
+</tr>
+<tr>
+<td>Wilshire 5000</td>
+<td>wilshire5000</td>
+</tr>
+<tr>
+<td>Barron&rsquo;s 400</td>
+<td>barrons400</td>
+</tr>
+<tr>
+<td>DOW 30</td>
+<td>dow30</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+You can provide multiple values to index and ticker parameters by passing a comma separated list.
+</aside>
+
+<h2 id="polling">Polling</h2>
+
+<p>To stay in sync with the API you make a request with <code class="prettyprint">last_id=[lastest document id]</code> then grab the id of the latest document that comes back and repeat. We packaged this logic up in a API client gem (coming soon).</p>
 
 <h2 id="backfill">Backfill</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?last_id=43211&amp;token=YOUR_TOKEN"</span>
-</code></pre>
-<p>API caches last 30 days of data. Your first request to the URL will fetch 100 documents from the beginning of that time period. For your next request you should use the id of the last document received to fetch the next 100 articles. Last document id should be used in URL like  http://feed.accern.com/v3/alphas?last_id=43211
-where 43211 is the id for last document received, or last_id. Once you have caught up to the current data stream, and there are no more documents available, you will get a response with 0 documents. It is suggested that you loop through this process after every 10 seconds once you have caught up to the current stream.</p>
 
-<h2 id="filters">Filters</h2>
-
-<p>You can filter the API response using the following parameters.
-1. Assigning last_id: Assigning last_id will help you get the real-time stream without duplication. It will fetch the data from the last_id onwards. Refer to the Backfill section and Ruby scripts for usage details.</p>
-
-<ol>
-<li><p>Assigning ticker: By providing ticker symbol in the URL, you can monitor a portfolio of companies. For example, http://feed.accern.com/v3
-/alphas?ticker=msft
-will give you only data related to Microsoft. You can provide upto 50 companies in each request (comma separated, like ticker=msft,jpm,GOOG,FB). If you seek to increase this limit, let us know and we will work something out. If you don&rsquo;t provide any ticker value, you will get ALL data.</p></li>
-<li><p>Assigning index: You can also filter our data by index. Currently, we support S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, BARRON&rsquo;S 400, DOW 30. You should use the following values to access index-specific data.
-Index ==&gt; Value you should use
-S&amp;P 500 ==&gt; sp500
-Russell 1000 ==&gt; russell1000
-Russell 3000 ==&gt; russell3000
-Wilshire 5000 ==&gt; wilshire5000
-Barron&rsquo;s 400 ==&gt; barrons400
-DOW 30 ==&gt; dow30</p></li>
-</ol>
-
-<p>Currently, you can only request one index at a time. Here is an example that shows how to get all S&amp;P 500 data: http://feed.accern.com/v3/alphas?index=sp500
-If you do not provide any filter information, you will receive all data (including possible duplicates). I recommend that you use at least the last_id filter.
-Ruby Scripts
-The zip file should contain 4 Ruby scripts - 2 helper scripts, and 2 executables.</p>
-
-<p>If you want the data in JSON format, please run ruby alpha_json.rb in the terminal. It will import the data in feed.json file. You need to provide your access token in the second line of alpha_json.rb</p>
-
-<p>If you want the data in CSV format, please run ruby alpha_csv.rb instead. Please note that the CSV format is just the flattened version of the JSON file. It will import the data in feed.csv file. You need to provide your access token in the second line of alpha_csv.rb</p>
-
-<p>Please do not run both the scripts at the same time as they share the same last_id.</p>
+<p>The API allows you to access data going back 30 days, anything older we provide via other means. To start from 30 days ago and move forward you have to provide <code class="prettyprint">last_id=0</code>. Then continue to hit the API while setting the <code class="prettyprint">last_id</code> field.</p>
 
       </div>
       <div class="dark-box">
