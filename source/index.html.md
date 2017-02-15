@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - feed/feed
+  - data_analytics/index
 
 search: true
 ---
