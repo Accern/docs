@@ -1,21 +1,25 @@
-##Impact
-
-Retrospective metric. Looking back in the history, we try to see how market behaved for a past similar event. Gives you probability that when a certain type of theme/event appears in media, will the stock of the company move up/down by more than 1% by EOD.
+##Impact (_overall)
+Gives you probability that when a certain type of theme/event appears in media, will the stock of the company move up/down by more than 1% by EOD.
 Overall Impact checks how an event like 'Company Earnings' generally has high impact compared to other events.
-Entity Impact Score is more precise. Ex, for Apple, how did 'Mergers & Acquisition' event affect them in the past. But this event can vary for different companies in their impact.
-Overall Impact Score, is an average across al the entity_impact_scores.
+Overall Impact Score, is an average across all the entity_impact_scores for different companies.
 
-`Definition: determine whether an event has a chance of affecting the stock price of the related company or in general by more than 1% at the end of the trading day.`
+###How it is calculated?
+An example of a retrospective metric. Looking back in archived history, we try to see how market behaved for a past similar event.
+More specifically, by overlaying 3-plus years of events data with market data, we determine if the event has a chance of moving the stock price of the company mentioned or in general by more than 1% by the end of the day.
 
-Process for Computing Impact (historical analysis)
+**Quick Definition (event_impact_score_overall)** determines if an event has a chance of affecting stock prices of companies in general by more than 1% at the end of the trading day.`
 
-Overlay 3-plus years of events data with market data to determine if the event has a chance of moving the stock price of the company mentioned or in general by more than 1% by the end of the day.
+###Examples:
 
-**event_impact_score_overall** - `Definition: determines if an event has a chance of affecting stock prices of companies in general by more than 1% at the end of the trading day.`
 
-**event_impact_score_on_entities** - `Definition: determines if an event has a chance of affecting the stock price of the mentioned company by more than 1% at the end of the trading day.`
+##Impact (_on_entities)
+Entity Impact Score is more precise as it it returns a probability that particular event will affect specific equities.
+For example, *event_impact_score_on_entities* of 90 for *Apple and 'Mergers & Acquisition' event* conveys this sort of story/theme moved the market before in the past and there is a high likelihood now as well.
+Also, this event can vary in impact for different companies.
 
-Examples:
+**Quick Definition (event_impact_score_on_entities)** determines if an event has a chance of affecting the stock price of the mentioned company by more than 1% at the end of the trading day.
+
+###Examples:
 
 - Event Impact Score Overall (High) - In the past 3 years, whenever a lawsuit happened, it affected the stock prices of companies in general by 1% or more EOD.
 

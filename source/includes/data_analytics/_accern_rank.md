@@ -1,33 +1,29 @@
-##Accern Rank
+##Accern Rank(overall_source_rank)
+Accern Rank identifies if information from a source is prompt and if that information will go viral (get reposted by others).
+In other words, it lets you know a source is usually the first to release a story and conveys if the stories published get republished by others.
 
-What? A main IP. Identifies if information from a source is prompt/quick and if that information will go viral/ get reposted by others.
-How? A graphical model that takes into account historical data (past news), how certain news appeared in the past and how distribution of articles within a story looked like.
-Checks which sources were faster, slower, etc. Which source in the past posted faster in the past, and then these other sources posted contextually similar articles.
+**Note:** Source is the main website. Ex NYT or Bloomberg. Author is the writer within the organization.
 
-Source is the main website. Ex NYT or Bloomberg. Author is within the organization.
-Ranks are based on Accern Rank model. General model tries to predict reliability and their ability to post republished stories.
-Event_source_rank is more precise. Example. Tumblr posts rumors faster than others. Bloomberg posts financial docs faster than others.
-Hence, possible for source has high rank to post for a certain event compared to others.
+**Quick Definition (overall_source_rank)** - determines if the author is reliable at releasing trending stories. 
+**Quick Definition (overall_author_rank)** - determines if the source is reliable at releasing trending stories. 
 
-**overall_source_rank** - Definition: determines if the author is reliable at releasing articles. 
+###How is it calculated?
+A graphical model takes into account historical data (past articles), how certain news appeared in the past and how the distribution of articles within a story looked like.
+It checks which sources were faster/slower, which source in the past posted faster in comparison to other sources which then posted contextually similar articles.
 
-**overall_author_rank** - Definition: determines if the source is reliable at releasing articles. 
+###Examples:
 
-**event_source_rank** - Definition: determines if the source is reliable at releasing articles associated with a financial event. 
+##Accern Rank(event_source_rank)
+Ranks are based on the same Accern Rank model which tries to predict reliability and their ability to post republished stories.
+event_source_rank/event_author_rank is more precise. 
+For ex. Tumblr posts rumors faster than others. Bloomberg posts financial docs faster than others.
+Hence, it is possible for a source to have high rank for a specific type of event and lower ranks in other categories.
 
-**event_author_rank** - Definition: determines if the source is reliable at releasing articles associated with a financial event.. 
+**Quick Definition (event_source_rank)** - determines if the source is reliable at releasing stories associated with a financial event. 
 
-Accern rank = timeliness + republished rate
+**Quick Definition (event_author_rank)** - determines if the source is reliable at releasing stories associated with a financial event.. 
 
-2-Step Process for Computing Accern Rank
-
-- timeliness
-Determines if the source or author is usually the first to release a story
-
-- republished rate
-Determines if the story released by the source or author gets republished by many others 
-
-Examples:
+###Examples:
  
 - **Overall Source Rank (High)** - StreetInsider releases stories first, and their stories get republished by many other sources.
  
