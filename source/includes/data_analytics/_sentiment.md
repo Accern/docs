@@ -1,7 +1,9 @@
 ##Sentiment Analysis
 **article_sentiment** - `Definition: determines if the article was written positively or negatively by the author.`
+Sentiment of the article written by the author/editor.
 
 **story_sentiment** - `Definition: aggregates article sentiment and calculate the average sentiment for each story.`
+An average of all the articles that fall into this story until now. If there is only one article, then first_mention=true, and story_sentiment equals article_sentiment.
 
 Accern sentiment = bag of words + n-grams + deep-learning
 
@@ -16,3 +18,6 @@ more accurate sentiment in articles.
 
 - Step 3: deep learning
 A few finance scholars manually identify the sentiment of a few thousand articles, which were used as a training set for future articles.
+
+3 parallel processes. Financial phrases created by our analysts. Deep Learning model that predicts if the article is positve or negative based on the representation of text. Then a metamodel (ensemble learning) that uses output of all these 3 models to generate a final score.
+ 

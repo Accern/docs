@@ -1,5 +1,11 @@
 ##Story Classification (story_id)
 
+Accern is the pioneer in story classification - being able to track how certain information flows in the media. Main purpose being, if multiple articles have the same gist of information.
+For example, if there is an article about Apple (APPL) and a lawsuit, we want to make sure we can group all similar articles and hence track how this information is flowing - i.e. who is posting on it.
+(vague) Story classification model is agnostic of the sentiment and it only groups based on the entities and events.
+Semantic structure of the article is taken as input. The model identifies important themes and checks in the last 2 weeks for similar theme.
+If similar theme was found, it groups along with this theme.
+
 ###What is it?
 Financial news stories are published on the web and social media in many forms. For ex. articles, tweets, & SEC filings. 
 We scour millions of these articles talking about financial events and group them into similar **stories**.

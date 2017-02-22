@@ -1,5 +1,10 @@
 ##Saturation (story_saturation)
 
+The exposure of the story online. Have a lot of people seen this story/information already?
+Thanks to story classification this is possible.
+
+Alexa Rank is used and web traffic information and historical data used to predict if certain types of information becomes low, mid, high level of saturation.
+Ex, twitter takes into account the number of followers, retweets Twitter user has.
 `Definition: gauge the current potential exposure of a story online`
 
 3-Step Process for Computing Saturation

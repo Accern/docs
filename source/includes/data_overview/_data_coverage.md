@@ -1,4 +1,6 @@
 ##Data Coverage
+Accern acquires information from many types of online sources. They include news articles, blog pieces, tweets, SEC filings, and more.
+
 ###Types of Data
 
 * Public News Websites
@@ -9,14 +11,18 @@
 * Other Social Media ex. Tumblr
 
 ###Acquiring the Data
+Accern has multiple avenues for financial information. They include our own, in-house web scrapers and data obtained via data providers.
+
 * Data Providers:
-Accern partners with a few data providers and licenses content.
+Majority of our data comes through our data providers. Currently monitoring around 300million+ sources (websites). **Note:** *Twitter counts as a single source.*
 * Proprietary Scrapers:
-Accern scrapes public websites that are expected to break market-moving news.
-* Low-Latency:
-Accern takes 40 milliseconds to deliver an article from the time it’s published.
+Accern has proprietary crawlers that monitor around 0.5million+ public, high-alpha sources. **Note:** *These important sources break market-moving news the fastest.*
 
 ###Data Summary
+Accern provides a low-latency processing time for these articles from the time we receive them in our system.
+
+**Anshul**
+
 a | b
 -----------|-----------
 Total Websites Monitored | 300 million-plus
