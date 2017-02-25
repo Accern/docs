@@ -21,6 +21,8 @@ We segment the average story web traffic into low, mid, and high saturation
 
 ###Examples:
  
+A story about NVIDIA's earnings published by at least 30 sources, of which it includes marketwatch.com , cnbc.com, etc. has high exposure (highly saturated) 
+Even a story 
 - Saturation (High) - story published on 100+ websites
  
 - Saturation (High) - story published on two major newswires

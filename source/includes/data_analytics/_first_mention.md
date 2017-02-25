@@ -12,6 +12,7 @@ If it finds one, it groups the article with this existing theme.
 Otherwise, it assigns a new story for this article and this article's first mention field is set to *'true'*.
 
 ###Examples
+
 September 1st, 2016 - (AAPL, MSFT) + Lawsuit - first_mention = **TRUE**
 
 September 12th, 2016 - (AAPL, MSFT) + Lawsuit - first_mention = **FALSE**

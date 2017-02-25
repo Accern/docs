@@ -21,7 +21,18 @@ A story = company **(hard match)** + event **(soft match)**
 
 ###Examples
 
-* **Story A** - `(AAPL, MSFT) + (Lawsuit)`
-* **Story A** - `(AAPL, MSFT) + (Lawsuit, Layoffs)`
-* **Story B** - `(AAPL, MSFT, IBM) + (Lawsuit)`
-* **Story B** - `(AAPL, MSFT, IBM) + (Layoffs)`
+An example of a big, viral story regarding **Google** and **Legal Actions** consists of articles below that are all talking about similar information.
+
+'Google alleges Uber stole its self-driving secrets' by Livemint.com
+
+'Google accuses Uber of stealing self-drive technology' by Business-standard.com
+
+'Lawsuit: Google self-driving car spinout Waymo claims Uber using stolen laser-mapping technology' by geekwire.com
+
+'Waymo: Uber stole our self-driving car tech' by cnet.com
+
+An example of a story about **Apple** and involving  **Rumours** can be seen to have started from a mention on a blog and eventually shows up on other sources wih bigger reach.
+
+"Apple reportedly plans to 'significantly' expand Seattle office after Turi acquisition" by bizjournals.com
+
+"Apple plans expansion of artificial intelligence efforts in Seattle" by forums.imore.com
