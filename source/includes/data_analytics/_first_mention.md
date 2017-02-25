@@ -11,6 +11,8 @@ The story classification model checks on a given article for a similar theme(com
 If it finds one, it groups the article with this existing theme.
 Otherwise, it assigns a new story for this article and this article's first mention field is set to *'true'*.
 
+![alt text](images/placeholder.png "Alt Text here")
+
 ###Examples
 
 September 1st, 2016 - (AAPL, MSFT) + Lawsuit - first_mention = **TRUE**

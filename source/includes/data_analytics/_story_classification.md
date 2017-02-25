@@ -7,17 +7,17 @@ Each **story** specifies 2 important details.
 The **equities** that are being talked about (currently amongst 8000+ US public equities) and
 a description of the associated **financial events** (currently 1000+ financial event distinctions available)
 
+**Quick Definition:** a story is an event that involves a company.
+
+###How is it created?
+
 Every day we scrape a million+ articles of various types such as blogs, tweets, SEC filings and news articles. 
 These **mentions** are processed to identify the associated **equities** (from the existing 8000+ US public equities)
 and the associated **financial event** (1000+ distinctions available). 
 All mentions that are similar in the above new parameters are grouped together into their own **stories**.
 Each story which is a combination of companies and events is given unique ids - (**story_id**).
 
-**Quick Definition:** a story is an event that involves a company.
-
-###How is it created?
-
-A story = company **(hard match)** + event **(soft match)**
+<img src="images/placeholder.png" alt="IMAGE ALT TEXT HERE" width="100%" />
 
 ###Examples
 
