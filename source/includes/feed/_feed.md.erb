@@ -29,6 +29,14 @@ json_response = req.json() # read response as JSON
 print(json_response)
 ```
 
+```r
+if (!require("jsonlite")) install.packages("jsonlite")
+
+url <- "http://feed.accern.com/v3/alphas?token=08b14780c4b4aae5ac97d92c33d25495"
+response <- fromJSON(url)
+print(response)
+```
+
 > Make sure to replace TOKEN above
 
 To authenticate provide your authentication token in the url. We provide the authentication token in your welcome email.
@@ -46,7 +54,11 @@ url = URI("http://feed.accern.com/v3/alphas?token=TOKEN")
 url = "http://feed.accern.com/v3/alphas?token=TOKEN"
 ```
 
-> The above code returns the most recent 100 documents.
+```R
+url <- "http://feed.accern.com/v3/alphas?token=TOKEN"
+```
+
+> The above url returns the most recent 100 documents.
 
 ```json
 <%= partial 'includes/feed/regular_response.json' %>
@@ -71,6 +83,10 @@ url = URI("http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN")
 url = "http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN"
 ```
 
+```R
+url <- "http://feed.accern.com/v3/alphas?last_id=1774184&token=TOKEN"
+```
+
 > Filter by index
 
 ```shell
@@ -83,6 +99,10 @@ url = URI("http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN")
 
 ```python
 url = "http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN"
+```
+
+```R
+url <- "http://feed.accern.com/v3/alphas?index=sp500&token=TOKEN"
 ```
 
 > Filter by multiple indexes
@@ -99,6 +119,10 @@ url = URI("http://feed.accern.com/v3/alphas?index=sp500,dow30&token=TOKEN")
 url = "http://feed.accern.com/v3/alphas?index=sp500,dow30&token=TOKEN"
 ```
 
+```R
+url <- "http://feed.accern.com/v3/alphas?index=sp500,dow30&token=TOKEN"
+```
+
 > Filter by ticker
 
 ```shell
@@ -113,6 +137,9 @@ url = URI("http://feed.accern.com/v3/alphas?ticker=amzn&token=TOKEN")
 url = "http://feed.accern.com/v3/alphas?ticker=amzn&token=TOKEN"
 ```
 
+```R
+url <- "http://feed.accern.com/v3/alphas?ticker=amzn&token=TOKEN"
+```
 
 > Filter by multiple tickers
 
@@ -126,6 +153,10 @@ url = URI("http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN")
 
 ```python
 url = "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
+```
+
+```R
+url <- "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
 ```
 
 Parameter | Description 
