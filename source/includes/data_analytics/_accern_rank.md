@@ -1,34 +1,45 @@
 ##Accern Rank(overall_source_rank)
-Accern Rank identifies if information from a source is prompt and if that information will go viral (get reposted by others).
-In other words, it lets you know a source is usually the first to release a story and conveys if the stories published get republished by others.
+**What is it?** Accern Rank identifies if the information from a source is posted promptly and if that information will go viral (similar articles published by others).
+**Rank 1** is lowest and **Rank 10** is highest.
+**In other words,** it lets you know which sources usually are among the first to publish articles on a new story and also informs if they have a knack at posting on stories that become wide spread.
 
-**Note:** Source is the main website. Ex NYT or Bloomberg. Author is the writer within the organization.
+**Quick Definition:**
 
-**Quick Definition (overall_source_rank)** - determines if the author is reliable at releasing trending stories. 
-**Quick Definition (overall_author_rank)** - determines if the source is reliable at releasing trending stories. 
+* **overall_source_rank** - determines if the SOURCE is *reliable* at releasing trending stories. i.e. reliable indicating ability to post early and trending indicating potential of wide spread stories.
 
-###How is it calculated?
-A graphical model takes into account historical data (past articles), how certain news appeared in the past and how the distribution of articles within a story looked like.
-It checks which sources were faster/slower, which source in the past posted faster in comparison to other sources which then posted contextually similar articles.
+* **overall_author_rank** - determines if the AUTHOR is *reliable* at releasing trending stories. 
 
-###Examples:
+<aside class="notice">
+Difference between source and author? Source is the website. Ex NYT or Bloomberg. Author is the writer within the organization.
+</aside>
+
+**How is it created?** A graphical model takes into account historical data (past articles), how certain news appeared in the past and how the distribution of articles within a story looked like.
+It checks in the past, which sources posted faster in comparison to other sources which then posted contextually similar articles.
+
+**Examples**
+
+- **Overall Source Rank (High)** - StreetInsider releases stories first, and their stories get republished by many other sources.
+
+- **Overall Author Rank (Low-Mid)** - John Paul releases stories on StreetInsider first, but his stories don’t get republished by any other authors.
 
 ##Accern Rank(event_source_rank)
-Ranks are based on the same Accern Rank model which tries to predict reliability and their ability to post republished stories.
-event_source_rank/event_author_rank is more precise. 
+**What is it?** Ranks are based on the same Accern Rank model which tries to predict promptness and ability to post republished stories.
+**Rank 1** is lowest and **Rank 10** is highest.
+**event_source_rank/event_author_rank** is more precise. 
 For ex. Tumblr posts rumors faster than others. Bloomberg posts financial docs faster than others.
-Hence, it is possible for a source to have high rank for a specific type of event and lower ranks in other categories.
+It would be prudent to the client to notice that sources will have varied ranks for different events.
 
-**Quick Definition (event_source_rank)** - determines if the source is reliable at releasing stories associated with a financial event. 
+**Quick Definition:**
 
-**Quick Definition (event_author_rank)** - determines if the source is reliable at releasing stories associated with a financial event.. 
+* **event_source_rank** - determines if the SOURCE is *reliable* at releasing articles associated with a financial event. 
 
-###Examples:
- 
-- **Overall Source Rank (High)** - StreetInsider releases stories first, and their stories get republished by many other sources.
+* **event_author_rank** - determines if the AUTHOR is *reliable* at releasing articles associated with a financial event.. 
+
+**How is it created?** The ranking model is the same. Ranks are calculated by filtering based on financial events.
+
+**Examples**
  
 - **Event Source Rank (High)** - StreetInsider releases lawsuit stories first, and their lawsuit stories get republished by many other sources.
 
-- **Overall Author Rank (Low-Mid)** - John Paul releases stories on StreetInsider first, but his stories don’t get republished by any other authors.
 
 - **Event Author Rank (Low-Mid)** - John Paul releases lawsuit stories on StreetInsider late, but his stories are republished by some authors.
