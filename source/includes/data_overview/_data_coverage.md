@@ -1,7 +1,10 @@
 ##Data Coverage
-Accern acquires information from many types of online sources. They include news articles, blog pieces, tweets, SEC filings, and more.
+Brief elaboration on what kind of data and where it comes from.
+Table of average daily statistics regarding the data processing pipeline.
 
-###Types of Data
+**Types of Data -**
+
+Accern acquires information from many types of online sources.
 
 * Public News Websites
 * Public Blogs
@@ -10,20 +13,23 @@ Accern acquires information from many types of online sources. They include news
 * Financial Documents ex. SEC Filings
 * Other Social Media ex. Tumblr
 
-###Acquiring the Data
-Accern has multiple avenues for financial information. They include our own, in-house web scrapers and data obtained via data providers.
+**How we Acquire the Data -**
 
-* Data Providers:
-Majority of our data comes through our data providers. Currently monitoring around 300million+ sources (websites). **Note:** *Twitter counts as a single source.*
-* Proprietary Scrapers:
-Accern has proprietary crawlers that monitor around 0.5million+ public, high-alpha sources. **Note:** *These important sources break market-moving news the fastest.*
+Accern has multiple avenues for financial information.
+They include our own, in-house web scrapers and data obtained via partnered data providers.
 
-###Data Summary
-Accern provides a low-latency processing time for these articles from the time we receive them in our system.
+* **Data Providers:**
+Majority of our data comes through our data providers.
+Currently monitoring around 300million+ sources (websites). 
+**NOTE:** *Twitter counts as a single source.*
 
-**Anshul**
+* **Proprietary Scrapers:**
+Accern has proprietary crawlers that monitor around 0.5million+ public, high-alpha sources.
+**NOTE:** *These important sources break market-moving news the fastest.*
 
-a | b
+**Quick Info on Data Pipeline -**
+
+Numbers | Numbers
 -----------|-----------
 Total Websites Monitored | 300 million-plus
 Number of Articles Processed Each Day | 5 million-plus
