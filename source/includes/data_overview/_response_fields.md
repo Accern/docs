@@ -1,6 +1,7 @@
-## Data Field Description
-Below table illustrates the different fields in a single article of the Accern API response
-> The below example json is a single article response.
+## Data Attributes
+> Sample object (article)
+
+Table illustrates all the attributes in a single object *(article)* of the Accern API response
 
 ```json
 {
@@ -120,7 +121,7 @@ Attributes | Type | Description
 -----------|------|-------------
 **id** | integer | unique id for feed (1 or greater)
 **article_id.$oid** | string |  unique id per article 
-**article_sentiment** | decimal | determines if article was written positively/negatively (-1.000 - 1.000)
+**article_sentiment** | decimal | determines if article was [written positively/negatively](#sentiment-article_sentiment) (-1.000 - 1.000)
 **article_type** | string | determines the source of an information (ex. blog, article, tweet)
 **article_url** | url string | original link to article
 **entities** | list | List of associated equities objects that are identified for this article
@@ -136,27 +137,30 @@ Attributes | Type | Description
 **entities_entity_id** | string | Entity level ID of the company, derived from Bloomberg Open Symbology
 **entities_global_id** | string | Unique global ID of the company, derived from Bloomberg Open Symbology
 **entities_competitors** | list | List of top three competitors associated with the company
-**event_author_rank** | list | Each object indicates the author's reliability in reporting on specific events
+**event_author_rank** | list | Each object indicates the [author's reliability](#accern-rank-event_source_rank) in reporting on specific events
 **event_groups** | list | Each object has a major event group and a subsection of that group
 **event_groups_type** | string | A subsection of an event group for more detail
 **event_groups_group** | string | A major event i.e. event group
-**event_impact_score** | object | Calculates the article's impact i.e. chance of affecting the associated companies' stock price
-**event_impact_score_overall** | decimal | Determines if an event has a chance of affecting stock prices of companies in general by more than 1% at the end of the trading day
-**event_impact_score_on_entities** | list |Determines if an event has a chance of affecting the stock price of the mentioned company by more than 1% at the end of the trading day
-**event_source_rank** | list | Each object indicates the source's reliability in reporting on specific events
+**event_impact_score** | object | Calculates the article's impact i.e. chance of affecting the associated company's stock price
+**event_impact_score_overall** | decimal | Determines chance of [event affecting stock prices in general](#impact-_overall) by end of trading day
+**event_impact_score_on_entities** | list |Determines chance of [event affecting associated company's stock price](#impact-_on_entities) by end of trading day
+**event_source_rank** | list | Each object indicates the [source's reliability](#accern-rank-event_source_rank) in reporting on specific events
 **event_summary_topic** | string | Level 1 event category
 **event_summary_group** | string | Level 2 event category
 **event_summary_theme** | string | Level 3 event category
 **event_summary_sub_theme** | string | Level 4 event category
 **event_summary_action** | string | action of an event
 **event_summary_acting_party** | string | parties associated with the event
-**first_mention** | boolean | If this article is the first one to break this new story in the last 2 weeks
+**first_mention** | boolean | If this article is the first one to [break this new story](#first-mention-first_mention)
 **harvested_at** | datetime | UTC formatted time when Accern received article
-**overall_author_rank** | integer | rank (1-10) of how reliable author is at releasing articles in general
-**overall_source_rank** | integer | rank (1-10) of how reliable source is at releasing articles in general
-**story_saturation** | string | how much exposure this story has currently. ex. high, mid, low
-**story_sentiment** | decimal | +ve/-ve sentiment score of the story by averaging related articles' sentiment published so far
+**overall_author_rank** | integer | rank (1-10) of how [reliable author](#accern-rank-overall_source_rank) is at releasing articles in general
+**overall_source_rank** | integer | rank (1-10) of how [reliable source](#accern-rank-overall_source_rank) is at releasing articles in general
+**story_saturation** | string | how much [exposure](#saturation-story_saturation) this story has currently. ex. high, mid, low
+**story_sentiment** | decimal | [+ve/-ve sentiment score of the story](#sentiment-story_sentiment) by averaging related articles' sentiment published so far
 **story_volume** | integer | number of articles associated with this story until now
 
 
-**PLEASE NOTE:** Certain fields like entities and event_groups have nested fields (JSON). Hence, fields like entities_name, entities_ticker, & event_groups_type refer to the internal name, ticker, and type attribute respectively.
+<aside class="notice">
+Fields like entities and event_groups have NESTED ATTRIBUTES.
+Hence, attributes like entities_name, entities_ticker, and event_groups_type, mentioned in the table, actually refer to the nested name, ticker, and type attributes respectively.
+</aside>
