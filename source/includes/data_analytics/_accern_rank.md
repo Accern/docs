@@ -11,6 +11,7 @@
 
 <aside class="notice">
 Difference between source and author? Source is the website. Ex NYT or Bloomberg. Author is the writer within the organization.
+In the below examples we use fictional name John Paul.
 </aside>
 
 **How is it created?** A graphical model takes into account historical data (past articles), how certain news appeared in the past and how the distribution of articles within a story looked like.
@@ -20,8 +21,9 @@ It checks in the past, which sources posted faster in comparison to other source
 
 - **Overall Source Rank (High)** - StreetInsider releases stories first, and their stories get republished by many other sources.
 
-- **Overall Author Rank (Low-Mid)** - John Paul releases stories on StreetInsider first, but his stories don’t get republished by any other authors.
+- **Overall Author Rank (Low-Mid)** - *John Paul*<sup>*</sup> releases stories on StreetInsider first, but his stories don’t get republished by any other authors.
 
+<sup>*</sup>
 ##Accern Rank(event_source_rank)
 **What is it?** Ranks are based on the same Accern Rank model which tries to predict promptness and ability to post republished stories.
 **Rank 1** is lowest and **Rank 10** is highest.
@@ -41,5 +43,4 @@ It would be prudent to the client to notice that sources will have varied ranks 
  
 - **Event Source Rank (High)** - StreetInsider releases lawsuit stories first, and their lawsuit stories get republished by many other sources.
 
-
-- **Event Author Rank (Low-Mid)** - John Paul releases lawsuit stories on StreetInsider late, but his stories are republished by some authors.
+- **Event Author Rank (Low-Mid)** - *John Paul*<sup>*</sup> releases lawsuit stories on StreetInsider late, but his stories are republished by some authors.

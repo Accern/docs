@@ -23,4 +23,33 @@ Also, this event can vary in impact score for different companies.
 
 **Examples**
 
-- Event Impact Score On Entities (High) - In the past 3 years, whenever a lawsuit happened in relation to AAPL, it affected the stock price of AAPL by 1% or more EOD.
+> Sample Snippet
+
+```json
+{
+    "....": "...",
+    "event_groups": [
+      {
+        "type": "Financial Results",
+        "group": "Company Earnings"
+      }
+    ],
+    "event_impact_score": {
+      "overall": 48.55540720961282,
+      "on_entities": [
+        {
+          "entity": "EBAY",
+          "on_entity": 26
+        },
+        {
+          "entity": "AMZN",
+          "on_entity": 36
+        }
+      ]
+    }
+}
+```
+
+- Considering the **right-side snippet**, we see that the results of Company Earnings reports have a lower impact on EBay and Amazon compared to all the companies overall.
+
+- Similarly, an event involving Criminal Actions/Fraud may have a high overall impact (event_impact_score.overall), but certain entities like Google are impacted 50% less. (event_impact_score.on_entities.on_entity)
