@@ -159,11 +159,11 @@ url = "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
 url <- "http://feed.accern.com/v3/alphas?ticker=aapl,amzn&token=TOKEN"
 ```
 
-Parameter | Description 
+Parameter | Description
 -----------| ------------
-last_id	      | Returns the latest 100 documents that came after the provided id.  Used to prevent duplicates while keeping in sync (see **streaming** section).
+last_id	      | Returns the latest 100 documents that came after the provided id.  Used to prevent duplicates while keeping in sync (see [streaming](#streaming) section).
 index         | Filters documents by the index, see below table for supported indexes. To filter by multiple indexes pass a comma separated list of indexes.
-ticker         | Filters documents by ticker. To filter by multiple tickers pass a comma separated list of tickers. 
+ticker         | Filters documents by ticker. To filter by multiple tickers pass a comma separated list of tickers.
 
 ### Allowed index values
 
@@ -175,6 +175,83 @@ Russell 3000		| russell3000
 Wilshire 5000		| wilshire5000
 Barron's 400		| barrons400
 DOW 30				| dow30
+
+## File Format
+
+```shell
+curl "http://feed.accern.com/v3/alphas.csv?token=TOKEN"
+```
+
+```ruby
+url = URI("http://feed.accern.com/v3/alphas.csv?token=TOKEN")
+```
+
+```python
+url = "http://feed.accern.com/v3/alphas.csv?token=TOKEN"
+```
+
+```R
+url <- "http://feed.accern.com/v3/alphas.csv?token=TOKEN"
+```
+
+By default the respone from the API feed is in JSON format. But if you append .csv you will get the data in CSV format.
+
+CSV Columns                |
+---------------------------|
+id                         |
+article_id                 |
+story_id                   |
+harvested_at               |
+entities_name_1            |
+entities_ticker_1          |
+entities_global_id_1       |
+entities_entity_id_1       |
+entities_type_1            |
+entities_exchange_1        |
+entities_sector_1          |
+entities_industry_1        |
+entities_country_1         |
+entities_region_1          |
+entities_index_1           |
+entities_competitors_1     |
+entities_name_2            |
+entities_ticker_2          |
+entities_global_id_2       |
+entities_entity_id_2       |
+entities_type_2            |
+entities_exchange_2        |
+entities_sector_2          |
+entities_industry_2        |
+entities_country_2         |
+entities_region_2          |
+entities_index_2           |
+entities_competitors_2     |
+event_groups_group_1       |
+event_groups_type_1        |
+event_groups_group_2       |
+event_groups_type_2        |
+story_sentiment            |
+story_saturation           |
+story_volume               |
+first_mention              |
+article_type               |
+article_sentiment          |
+overall_source_rank        |
+event_source_rank_1        |
+event_source_rank_2        |
+overall_author_rank        |
+event_author_rank_1        |
+event_author_rank_2        |
+event_impact_score_overall |
+event_impact_score_entity_1|
+event_impact_score_entity_2|
+event_summary_group        |
+event_summary_theme        |
+event_summary_topic        |
+event_summary_action       |
+event_summary_sub-theme    |
+event_summary_acting_party |
+article_url                |
 
 ## Streaming
 
