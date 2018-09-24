@@ -1,0 +1,1339 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Accern Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #272822;
+  background-color: #f92672;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #f8f8f2;
+}
+.highlight .p, .highlight .pi {
+  color: #f8f8f2;
+}
+.highlight .gi {
+  color: #a6e22e;
+}
+.highlight .gd {
+  color: #f92672;
+}
+.highlight .gh {
+  color: #66d9ef;
+  background-color: #272822;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #ae81ff;
+}
+.highlight .kc {
+  color: #fd971f;
+}
+.highlight .kt {
+  color: #fd971f;
+}
+.highlight .kd {
+  color: #fd971f;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sr {
+  color: #a1efe4;
+}
+.highlight .si {
+  color: #cc6633;
+}
+.highlight .se {
+  color: #cc6633;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #66d9ef;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #a6e22e;
+}
+.highlight .ss {
+  color: #a6e22e;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;r&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" width="185" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="r">r</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="accern-api">Accern API</h1>
+
+<h2 id="authentication">Authentication</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'uri'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span><span class="p">)</span>
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre><pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas?token=TOKEN"</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">text_response</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">text</span> <span class="c"># read response as Text</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text_response</span><span class="p">)</span>
+
+<span class="n">json_response</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="c"># read response as JSON</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json_response</span><span class="p">)</span>
+</code></pre><pre class="highlight r"><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"jsonlite"</span><span class="p">))</span><span class="w"> </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"jsonlite"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span><span class="w">
+</span><span class="n">response</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fromJSON</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Make sure to replace TOKEN above</p>
+</blockquote>
+
+<p>To authenticate provide your authentication token in the url. We provide the authentication token in your welcome email.</p>
+
+<h2 id="feed">Feed</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas?token=TOKEN"</span>
+</code></pre><pre class="highlight r"><code><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas?token=TOKEN"</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The above url returns the most recent 100 documents.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1774184</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"589b44a569fe9f7f77024f4a"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"article_sentiment"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.098</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_traffic"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blog"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://feedproxy.google.com/~r/RedmondPie/~3/mF7K04DF1y4/"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"correlations"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, BARRON'S 400, NASDAQ 100"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North America"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Technology"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NASDAQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Computer Manufacturing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQ0010169500001000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBG000B9XRY4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"competitors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"GOOG"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"HPQ"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amazon.com, Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, NASDAQ 100"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North America"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Consumer Services"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMZN"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NASDAQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Catalog/Specialty Distribution"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQ0021695200001000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBG000BVPV84"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"competitors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"BKS"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_author_rank"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recruitment"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Layoff"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_impact_score"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"overall"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.88471673254282</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"on_entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMZN"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"event_source_rank"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sub-theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"acting_party"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"first_mention"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"harvested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-08 16:17:39 UTC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"overall_author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"overall_source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"589a6b6469fe9f7f70ac1df6"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"story_saturation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_sentiment"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.072</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_shares"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<p><code class="prettyprint">GET http://feed.accern.com/v3/alphas?token=TOKEN</code></p>
+
+<p>By default this request will return the most recent 100 documents.</p>
+
+<h2 id="filtering">Filtering</h2>
+
+<blockquote>
+<p>Filter by last_id</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?last_id=1774184&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?last_id=1774184&amp;token=TOKEN"</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas?last_id=1774184&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight r"><code><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas?last_id=1774184&amp;token=TOKEN"</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Filter by index</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?index=sp500&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?index=sp500&amp;token=TOKEN"</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas?index=sp500&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight r"><code><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas?index=sp500&amp;token=TOKEN"</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Filter by multiple indexes</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?index=sp500,dow30&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?index=sp500,dow30&amp;token=TOKEN"</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas?index=sp500,dow30&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight r"><code><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas?index=sp500,dow30&amp;token=TOKEN"</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Filter by ticker</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?ticker=amzn&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?ticker=amzn&amp;token=TOKEN"</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas?ticker=amzn&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight r"><code><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas?ticker=amzn&amp;token=TOKEN"</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Filter by multiple tickers</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas?ticker=aapl,amzn&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas?ticker=aapl,amzn&amp;token=TOKEN"</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas?ticker=aapl,amzn&amp;token=TOKEN"</span>
+</code></pre><pre class="highlight r"><code><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas?ticker=aapl,amzn&amp;token=TOKEN"</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>last_id</td>
+<td>Returns the latest 100 documents that came after the provided id.  Used to prevent duplicates while keeping in sync (see <a href="#streaming">streaming</a> section).</td>
+</tr>
+<tr>
+<td>index</td>
+<td>Filters documents by the index, see below table for supported indexes. To filter by multiple indexes pass a comma separated list of indexes.</td>
+</tr>
+<tr>
+<td>ticker</td>
+<td>Filters documents by ticker. To filter by multiple tickers pass a comma separated list of tickers.</td>
+</tr>
+</tbody></table>
+
+<h3 id="allowed-index-values">Allowed index values</h3>
+
+<table><thead>
+<tr>
+<th>index</th>
+<th>expected query string value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>S&amp;P 500</td>
+<td>sp500</td>
+</tr>
+<tr>
+<td>Russell 1000</td>
+<td>russell1000</td>
+</tr>
+<tr>
+<td>Russell 3000</td>
+<td>russell3000</td>
+</tr>
+<tr>
+<td>Wilshire 5000</td>
+<td>wilshire5000</td>
+</tr>
+<tr>
+<td>Barron&rsquo;s 400</td>
+<td>barrons400</td>
+</tr>
+<tr>
+<td>DOW 30</td>
+<td>dow30</td>
+</tr>
+</tbody></table>
+
+<h2 id="file-format">File Format</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://feed.accern.com/v3/alphas.csv?token=TOKEN"</span>
+</code></pre><pre class="highlight ruby"><code><span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"http://feed.accern.com/v3/alphas.csv?token=TOKEN"</span><span class="p">)</span>
+</code></pre><pre class="highlight python"><code><span class="n">url</span> <span class="o">=</span> <span class="s">"http://feed.accern.com/v3/alphas.csv?token=TOKEN"</span>
+</code></pre><pre class="highlight r"><code><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"http://feed.accern.com/v3/alphas.csv?token=TOKEN"</span><span class="w">
+</span></code></pre>
+<p>By default the response from the API feed is in JSON format. But if you append .csv you will get the data in CSV format.</p>
+
+<table><thead>
+<tr>
+<th>CSV Columns</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+</tr>
+<tr>
+<td>article_id</td>
+</tr>
+<tr>
+<td>story_id</td>
+</tr>
+<tr>
+<td>harvested_at</td>
+</tr>
+<tr>
+<td>entities_name_1</td>
+</tr>
+<tr>
+<td>entities_ticker_1</td>
+</tr>
+<tr>
+<td>entities_global_id_1</td>
+</tr>
+<tr>
+<td>entities_entity_id_1</td>
+</tr>
+<tr>
+<td>entities_type_1</td>
+</tr>
+<tr>
+<td>entities_exchange_1</td>
+</tr>
+<tr>
+<td>entities_sector_1</td>
+</tr>
+<tr>
+<td>entities_industry_1</td>
+</tr>
+<tr>
+<td>entities_country_1</td>
+</tr>
+<tr>
+<td>entities_region_1</td>
+</tr>
+<tr>
+<td>entities_index_1</td>
+</tr>
+<tr>
+<td>entities_competitors_1</td>
+</tr>
+<tr>
+<td>entities_name_2</td>
+</tr>
+<tr>
+<td>entities_ticker_2</td>
+</tr>
+<tr>
+<td>entities_global_id_2</td>
+</tr>
+<tr>
+<td>entities_entity_id_2</td>
+</tr>
+<tr>
+<td>entities_type_2</td>
+</tr>
+<tr>
+<td>entities_exchange_2</td>
+</tr>
+<tr>
+<td>entities_sector_2</td>
+</tr>
+<tr>
+<td>entities_industry_2</td>
+</tr>
+<tr>
+<td>entities_country_2</td>
+</tr>
+<tr>
+<td>entities_region_2</td>
+</tr>
+<tr>
+<td>entities_index_2</td>
+</tr>
+<tr>
+<td>entities_competitors_2</td>
+</tr>
+<tr>
+<td>event_groups_group_1</td>
+</tr>
+<tr>
+<td>event_groups_type_1</td>
+</tr>
+<tr>
+<td>event_groups_group_2</td>
+</tr>
+<tr>
+<td>event_groups_type_2</td>
+</tr>
+<tr>
+<td>story_sentiment</td>
+</tr>
+<tr>
+<td>story_saturation</td>
+</tr>
+<tr>
+<td>story_volume</td>
+</tr>
+<tr>
+<td>first_mention</td>
+</tr>
+<tr>
+<td>article_type</td>
+</tr>
+<tr>
+<td>article_sentiment</td>
+</tr>
+<tr>
+<td>overall_source_rank</td>
+</tr>
+<tr>
+<td>event_source_rank_1</td>
+</tr>
+<tr>
+<td>event_source_rank_2</td>
+</tr>
+<tr>
+<td>overall_author_rank</td>
+</tr>
+<tr>
+<td>event_author_rank_1</td>
+</tr>
+<tr>
+<td>event_author_rank_2</td>
+</tr>
+<tr>
+<td>event_impact_score_overall</td>
+</tr>
+<tr>
+<td>event_impact_score_entity_1</td>
+</tr>
+<tr>
+<td>event_impact_score_entity_2</td>
+</tr>
+<tr>
+<td>event_summary_group</td>
+</tr>
+<tr>
+<td>event_summary_theme</td>
+</tr>
+<tr>
+<td>event_summary_topic</td>
+</tr>
+<tr>
+<td>event_summary_action</td>
+</tr>
+<tr>
+<td>event_summary_sub-theme</td>
+</tr>
+<tr>
+<td>event_summary_acting_party</td>
+</tr>
+<tr>
+<td>article_url</td>
+</tr>
+</tbody></table>
+
+<h2 id="streaming">Streaming</h2>
+
+<p>To stay in sync with the API you make a request with <code class="prettyprint">last_id=[lastest document id]</code> then grab the id of the latest document that comes back and repeat. We packaged this logic up in our Accern gem, to install follow the instructions on the <a href="https://github.com/accern/accern">repo</a>.</p>
+
+<h2 id="backfill">Backfill</h2>
+
+<p>The API allows you to access data going back 30 days, anything older we provide via other means. To start from 30 days ago and move forward you have to provide <code class="prettyprint">last_id=0</code>. Then continue to hit the API while setting the <code class="prettyprint">last_id</code> query string parameter.</p>
+
+          <h1 id="accern-overview">Accern Overview</h1>
+
+<p>The Accern API provides a comprehensive, REST-based interface for accessing all financial-related articles processed by our platform within the <strong>last 30 days</strong>.</p>
+
+<p>Each article is processed through our data pipeline, extracted for entities like <strong>equities</strong> and <strong>financial events</strong> which are made available through the API.</p>
+
+<p>We also include numerous, insightful analytics like <strong>sentiment</strong>, <strong>impact score</strong>, <strong>story saturation</strong>, etc.</p>
+
+<p><strong>NOTE:</strong> Further details in <a href="#accern-analytics">Accern Analytics</a> Section.</p>
+
+<h2 id="data-attributes">Data Attributes</h2>
+
+<blockquote>
+<p>Sample object (article)</p>
+</blockquote>
+
+<p>Table illustrates all the attributes in a single object <em>(article)</em> of the Accern API response</p>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1774184</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"589b44a569fe9f7f77024f4a"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"article_sentiment"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.098</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_traffic"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blog"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"article_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://feedproxy.google.com/~r/RedmondPie/~3/mF7K04DF1y4/"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"author_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"correlations"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, BARRON'S 400, NASDAQ 100"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North America"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Technology"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NASDAQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Computer Manufacturing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQ0010169500001000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBG000B9XRY4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"competitors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"GOOG"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"HPQ"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amazon.com, Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Public"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S&amp;P 500, Russell 1000, Russell 3000, Wilshire 5000, NASDAQ 100"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North America"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Consumer Services"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMZN"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NASDAQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Catalog/Specialty Distribution"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EQ0021695200001000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"global_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBG000BVPV84"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"competitors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"BKS"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_author_rank"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recruitment"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Layoff"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_impact_score"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"overall"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.88471673254282</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"on_entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AAPL"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMZN"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"event_source_rank"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"event_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Actions"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sub-theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"acting_party"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"first_mention"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"harvested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-08 16:17:39 UTC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"overall_author_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"overall_source_rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"589a6b6469fe9f7f70ac1df6"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"story_saturation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_sentiment"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.072</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_shares"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"story_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>integer</td>
+<td>unique id for feed (1 or greater)</td>
+</tr>
+<tr>
+<td><strong>article_id.$oid</strong></td>
+<td>string</td>
+<td>unique id per article</td>
+</tr>
+<tr>
+<td><strong>article_sentiment</strong></td>
+<td>decimal</td>
+<td>determines if article was <a href="#sentiment-article_sentiment">written positively/negatively</a> (-1.000 - 1.000)</td>
+</tr>
+<tr>
+<td><strong>article_type</strong></td>
+<td>string</td>
+<td>determines the source of an information (ex. blog, article, tweet)</td>
+</tr>
+<tr>
+<td><strong>article_url</strong></td>
+<td>url string</td>
+<td>original link to article</td>
+</tr>
+<tr>
+<td><strong>entities</strong></td>
+<td>list</td>
+<td>List of associated equities objects that are identified for this article</td>
+</tr>
+<tr>
+<td><strong>entities_name</strong></td>
+<td>string</td>
+<td>name of the company (8,000+ U.S. public equities)</td>
+</tr>
+<tr>
+<td><strong>entities_type</strong></td>
+<td>string</td>
+<td>Classifying if it&rsquo;s publicly traded (ex. public)</td>
+</tr>
+<tr>
+<td><strong>entities_index</strong></td>
+<td>string</td>
+<td>Comma-separated string of indices company is listed on</td>
+</tr>
+<tr>
+<td><strong>entities_region</strong></td>
+<td>string</td>
+<td>Region of the company&rsquo;s headquarters</td>
+</tr>
+<tr>
+<td><strong>entities_sector</strong></td>
+<td>string</td>
+<td>Sector of the company</td>
+</tr>
+<tr>
+<td><strong>entities_ticker</strong></td>
+<td>string</td>
+<td>Ticker of the company</td>
+</tr>
+<tr>
+<td><strong>entities_country</strong></td>
+<td>string</td>
+<td>Country of company&rsquo;s headquarters</td>
+</tr>
+<tr>
+<td><strong>entities_exchange</strong></td>
+<td>string</td>
+<td>Exchange the company is traded on</td>
+</tr>
+<tr>
+<td><strong>entities_industry</strong></td>
+<td>string</td>
+<td>Industry of the company</td>
+</tr>
+<tr>
+<td><strong>entities_entity_id</strong></td>
+<td>string</td>
+<td>Entity level ID of the company, derived from Bloomberg Open Symbology</td>
+</tr>
+<tr>
+<td><strong>entities_global_id</strong></td>
+<td>string</td>
+<td>Unique global ID of the company, derived from Bloomberg Open Symbology</td>
+</tr>
+<tr>
+<td><strong>entities_competitors</strong></td>
+<td>list</td>
+<td>List of top three competitors associated with the company</td>
+</tr>
+<tr>
+<td><strong>event_author_rank</strong></td>
+<td>list</td>
+<td>Each object indicates the <a href="#accern-rank-event_source_rank">author&rsquo;s reliability</a> in reporting on specific events</td>
+</tr>
+<tr>
+<td><strong>event_groups</strong></td>
+<td>list</td>
+<td>Each object has a major event group and a subsection of that group</td>
+</tr>
+<tr>
+<td><strong>event_groups_type</strong></td>
+<td>string</td>
+<td>A subsection of an event group for more detail</td>
+</tr>
+<tr>
+<td><strong>event_groups_group</strong></td>
+<td>string</td>
+<td>A major event i.e. event group</td>
+</tr>
+<tr>
+<td><strong>event_impact_score</strong></td>
+<td>object</td>
+<td>Calculates the article&rsquo;s impact i.e. chance of affecting the associated company&rsquo;s stock price</td>
+</tr>
+<tr>
+<td><strong>event_impact_score_overall</strong></td>
+<td>decimal</td>
+<td>Determines chance of <a href="#impact-_overall">event affecting stock prices in general</a> by end of trading day</td>
+</tr>
+<tr>
+<td><strong>event_impact_score_on_entities</strong></td>
+<td>list</td>
+<td>Determines chance of <a href="#impact-_on_entities">event affecting associated company&rsquo;s stock price</a> by end of trading day</td>
+</tr>
+<tr>
+<td><strong>event_source_rank</strong></td>
+<td>list</td>
+<td>Each object indicates the <a href="#accern-rank-event_source_rank">source&rsquo;s reliability</a> in reporting on specific events</td>
+</tr>
+<tr>
+<td><strong>event_summary_topic</strong></td>
+<td>string</td>
+<td>Level 1 event category</td>
+</tr>
+<tr>
+<td><strong>event_summary_group</strong></td>
+<td>string</td>
+<td>Level 2 event category</td>
+</tr>
+<tr>
+<td><strong>event_summary_theme</strong></td>
+<td>string</td>
+<td>Level 3 event category</td>
+</tr>
+<tr>
+<td><strong>event_summary_sub_theme</strong></td>
+<td>string</td>
+<td>Level 4 event category</td>
+</tr>
+<tr>
+<td><strong>event_summary_action</strong></td>
+<td>string</td>
+<td>action of an event</td>
+</tr>
+<tr>
+<td><strong>event_summary_acting_party</strong></td>
+<td>string</td>
+<td>parties associated with the event</td>
+</tr>
+<tr>
+<td><strong>first_mention</strong></td>
+<td>boolean</td>
+<td>If this article is the first one to <a href="#first-mention-first_mention">break this new story</a></td>
+</tr>
+<tr>
+<td><strong>harvested_at</strong></td>
+<td>datetime</td>
+<td>UTC formatted time when Accern received article</td>
+</tr>
+<tr>
+<td><strong>overall_author_rank</strong></td>
+<td>integer</td>
+<td>rank (1-10) of how <a href="#accern-rank-overall_source_rank">reliable author</a> is at releasing articles in general</td>
+</tr>
+<tr>
+<td><strong>overall_source_rank</strong></td>
+<td>integer</td>
+<td>rank (1-10) of how <a href="#accern-rank-overall_source_rank">reliable source</a> is at releasing articles in general</td>
+</tr>
+<tr>
+<td><strong>story_saturation</strong></td>
+<td>string</td>
+<td>how much <a href="#saturation-story_saturation">exposure</a> this story has currently. ex. high, mid, low</td>
+</tr>
+<tr>
+<td><strong>story_sentiment</strong></td>
+<td>decimal</td>
+<td><a href="#sentiment-story_sentiment">+ve/-ve sentiment score of the story</a> by averaging related articles&rsquo; sentiment published so far</td>
+</tr>
+<tr>
+<td><strong>story_volume</strong></td>
+<td>integer</td>
+<td>number of articles associated with this story until now</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Fields like entities and event_groups have NESTED ATTRIBUTES.
+Hence, attributes like entities_name, entities_ticker, and event_groups_type, mentioned in the table, actually refer to the nested name, ticker, and type attributes respectively.
+</aside>
+
+<h2 id="data-coverage">Data Coverage</h2>
+
+<p>Brief elaboration on what kind of data and where it comes from.
+Table of average daily statistics regarding the data processing pipeline.</p>
+
+<p><strong>Types of Data -</strong></p>
+
+<p>Accern acquires information from many types of online sources.</p>
+
+<ul>
+<li>Public News Websites</li>
+<li>Public Blogs</li>
+<li>Press Releases</li>
+<li>Twitter</li>
+<li>Financial Documents ex. SEC Filings</li>
+<li>Other Social Media ex. Tumblr</li>
+</ul>
+
+<p><strong>How we Acquire the Data -</strong></p>
+
+<p>Accern has multiple avenues for financial information.
+They include our own, in-house web scrapers and data obtained via partnered data providers.</p>
+
+<ul>
+<li><p><strong>Data Providers:</strong>
+Majority of our data comes through our data providers.
+Currently monitoring around 300million+ sources (websites). 
+<strong>NOTE:</strong> <em>Twitter counts as a single source.</em></p></li>
+<li><p><strong>Proprietary Scrapers:</strong>
+Accern has proprietary crawlers that monitor around 0.5million+ public, high-alpha sources.
+<strong>NOTE:</strong> <em>These important sources break market-moving news the fastest.</em></p></li>
+</ul>
+
+<p><strong>Quick Info on Data Pipeline -</strong></p>
+
+<table><thead>
+<tr>
+<th>Numbers</th>
+<th>Numbers</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Total Websites Monitored</td>
+<td>300 million-plus</td>
+</tr>
+<tr>
+<td>Number of Articles Processed Each Day</td>
+<td>5 million-plus</td>
+</tr>
+<tr>
+<td>Number of Articles Delivered Each Day</td>
+<td>20,000-plus</td>
+</tr>
+<tr>
+<td>Format of Data Delivered</td>
+<td>JSON, CSV</td>
+</tr>
+<tr>
+<td>Real-time Data Delivery Method</td>
+<td>REST API, Web Portal</td>
+</tr>
+<tr>
+<td>Processing Time Per Article Published</td>
+<td>40 milliseconds</td>
+</tr>
+<tr>
+<td>Trading Analytics Derived Per Article</td>
+<td>10-plus</td>
+</tr>
+<tr>
+<td>Archive Date Range Available</td>
+<td>08/25/2012 to 08/19/2016 (4 years)</td>
+</tr>
+<tr>
+<td>Number of Archive Articles</td>
+<td>15 million-plus</td>
+</tr>
+<tr>
+<td>Archive Delivery Method</td>
+<td>FTP, Dropbox</td>
+</tr>
+<tr>
+<td>Data Financial Asset Mapping</td>
+<td>Tickers, Bloomberg ID</td>
+</tr>
+<tr>
+<td>Financial Assets Coverage</td>
+<td>8,000-plus U.S. public equities</td>
+</tr>
+<tr>
+<td>Financial Events Coverage</td>
+<td>1,000-plus financial events</td>
+</tr>
+</tbody></table>
+
+<h2 id="story-classification">Story Classification</h2>
+
+<p>THOUSANDS of sources/authors post about the SAME news stories resulting in MILLIONS of articles/day. </p>
+
+<p>Accern groups together articles talking about similar information (i.e. certain equities A, B, &amp; C are involved in some financial event D) into <strong>UNIQUE STORIES</strong>.
+Accern is the pioneer of this story classification process, allowing you to track how information flows online. </p>
+
+<ul>
+<li>You will know the current <a href="#saturation-story_saturation">exposure</a> of a financial news headline</li>
+<li>You will know the <a href="#sentiment-story_sentiment">overall sentiment</a> of this market event</li>
+<li>You will know if the source that just posted a rumor is reliable based on authenticity of previous rumor-related stories published</li>
+<li>Many more <a href="#accern-analytics">analytics</a></li>
+</ul>
+
+<p><strong>In Depth:</strong> Story classification model is agnostic of article sentiment and it only groups based on the <strong>extracted entities and events.</strong>
+Semantic structure of the article is taken as input. The model identifies important themes and checks in the <strong>last 2 weeks</strong> for similar themes.
+If similar theme was found, it groups along with this theme.
+A combination of machine learning models used to extract entities and then linked back amongst the 8k+ U.S equities and 1k+ financial events.</p>
+
+<p>Accern has compiled multiple entity dictionaries for linking names mentioned in media to the correct entities.</p>
+
+<p><strong>Proprietary Entities Dictionary</strong>
+Accern has developed a proprietary dictionary that maps all ways financial entities are mentioned in the media to the 8,000-plus U.S. public equities.</p>
+
+<p>The dictionary consists of over 150,000 company name variations and includes Bloomberg IDs, ticker symbols, etc. mapped back to these company names.
+<strong>How? -</strong> Looking at historical data, we identify the different ways companies have been mentioned to build and update this dictionary.</p>
+
+<p><strong>Proprietary Financial Events Dictionary</strong>
+Accern has developed a proprietary dictionary that maps over 30,000 financial event variations mentioned in media to an aggregated list of 1,000-plus financial events. 
+<strong>How? -</strong> We worked with financial analysts/equity researchers to figure out an initial list of important financial events. 
+Then, starting with this list and looking at historical data, we figured out different variations of event names.</p>
+
+<h2 id="noise-cancellation">Noise Cancellation</h2>
+
+<p>Accern processes millions of articles/day of which a significant amount ends up as spam/ads/coupons/etc.
+To tackle this issue, Accern has optimized it&rsquo;s noise detection algorithms over the years.
+This noise cancellation mechanism takes around 150M+ articles (tweets, articles, blogs, etc.) every day and gives out around 25k articles at the end.</p>
+
+<p><strong>Proprietary Pattern Recognition Spam Detector</strong></p>
+
+<p>Our proprietary noise cancellation mechanism identifies if the input article qualifies as spam and does not contain any insightful information.</p>
+
+<p><strong>How? -</strong> A compiled list of <em>regex-expression based phrases</em> are used to classify the articles as spam or not.
+Using machine learning models and pattern recognition, Accern is able to automatically figure out which articles can be classified as spam based on the way their titles are written.</p>
+
+<p><code class="prettyprint">Example: Save Up to 50% on Your Purchases with Coupons at Amazon.com!</code></p>
+
+<p>Accern will use pattern recognition to identify future articles talking about coupon codes from Amazon and automatically remove it.</p>
+
+<p><strong>Proprietary Blacklist of Spam Websites</strong>
+Accern has compiled a proprietary list of websites that are known to release spam, irrelevant content to financial markets investors.</p>
+
+<p><strong>How? -</strong> Looking in the historical archive of articles posted by different news sources, we calculate the probability that a newly published article from this source will turn out as spam.
+If the probability is above a threshold, we include it in our blacklist which is constantly kept up to date.</p>
+
+          <h1 id="accern-analytics">Accern Analytics</h1>
+
+<h2 id="unique-stories-story_id">Unique Stories (story_id)</h2>
+
+<p><strong>What is it?</strong> Financial news stories are published on the web and social media in many forms. For ex. articles, tweets, &amp; SEC filings. 
+We scour millions of these articles talking about financial events and group them into similar <strong>stories</strong>.
+Each <strong>story</strong> specifies 2 important details. 
+The <strong>equities</strong> that are being talked about (currently amongst 8000+ US public equities) and
+a description of the associated <strong>financial events</strong> (currently 1000+ financial event distinctions available)</p>
+
+<p><strong>Quick Definition:</strong> a story is an event that involves a company.</p>
+
+<p><strong>How is it created?</strong> Every day we scrape a million+ articles of various types such as blogs, tweets, SEC filings and news articles. 
+These <strong>mentions</strong> go through the <a href="#story-classification">story classification model</a> to identify the associated <strong>equities</strong> (from the existing 8000+ US public equities)
+and the associated <strong>financial event</strong> (1000+ distinctions available). 
+All mentions that are similar in the above entities are grouped together into their own <strong>stories</strong>.
+Each story which is a combination of companies and events is given unique ids - (<strong>story_id</strong>).</p>
+
+<p><strong>Examples</strong></p>
+
+<p>An example of a big, viral story regarding <strong>Google</strong> and <strong>Legal Actions</strong> consists of articles below that are all talking about similar information.</p>
+
+<ul>
+<li><p>&lsquo;Google alleges Uber stole its self-driving secrets&rsquo; by Livemint.com</p></li>
+<li><p>&lsquo;Google accuses Uber of stealing self-drive technology&rsquo; by Business-standard.com</p></li>
+<li><p>&lsquo;Lawsuit: Google self-driving car spinout Waymo claims Uber using stolen laser-mapping technology&rsquo; by geekwire.com</p></li>
+<li><p>&#39;Waymo: Uber stole our self-driving car tech&rsquo; by cnet.com</p></li>
+</ul>
+
+<p>An example of a story reporting on a <strong>Rumour</strong> about <strong>Apple</strong> can be seen to have been initially posted on a blog before finally showing up on other sources wih bigger reach.</p>
+
+<ul>
+<li><p>&ldquo;Apple reportedly plans to &#39;significantly&rsquo; expand Seattle office after Turi acquisition&rdquo; by bizjournals.com</p></li>
+<li><p>&ldquo;Apple plans expansion of artificial intelligence efforts in Seattle&rdquo; by forums.imore.com</p></li>
+</ul>
+
+<h2 id="first-mention-first_mention">First Mention (first_mention)</h2>
+
+<p><strong>What is it?</strong> Whenever a financial news story breaks out, many articles (mentions) get published about the same story.
+First Mention tells us if the article is the <strong>FIRST</strong> to break that new story.</p>
+
+<p><strong>Quick Definition:</strong> A story that has not been mentioned on the internet for at least 2 weeks.</p>
+
+<p><strong>How is it created?</strong> The story classification model extracts a theme(combination of event and companies) from input article. It then searches for highly similar themes in the last 2 weeks. </p>
+
+<p>If it finds one, it groups this article with the existing story (theme) and sets it&rsquo;s <strong>first_mention</strong> to <strong>FALSE</strong>.
+Otherwise, it creates a new story and this article&rsquo;s <strong>first_mention</strong> attribute is set to <strong>TRUE</strong>.</p>
+
+<p><strong>Examples</strong></p>
+
+<p>In brief, the power of knowing an article is the first to break a new story -&gt;</p>
+
+<table><thead>
+<tr>
+<th>date</th>
+<th>headline</th>
+<th>first_mention</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>08:50 AM 28 Feb</td>
+<td>Xbox launches Netflix-like service for gamers</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>11:35 AM 28 Feb</td>
+<td>GameStop stock price tanks after Microsoft announces new digital-gaming service</td>
+<td>FALSE</td>
+</tr>
+</tbody></table>
+
+<h2 id="sentiment-article_sentiment">Sentiment (article_sentiment)</h2>
+
+<p><strong>What is it?</strong> Sentiment score (-1 - +1) of the article based on title and content.</p>
+
+<p><strong>Quick Definition:</strong> determines if the article was written positively or negatively by the author/editor.</p>
+
+<p><strong>How is it created?</strong> Sentiment Analysis of articles involves 3 parallel models. <strong>(bag of words + n-grams + deep-learning)</strong></p>
+
+<ul>
+<li><p>Bag of Words involves a proprietary list of 300,000-plus positive and negative words, differently weighed, which are used to gauge a base sentiment of an article.</p></li>
+<li><p>N-grams involves a proprietary list of positive and negative two- to three-word phrases which are used to gauge a more accurate sentiment in articles. 
+These lists are compiled by financial analysts.</p></li>
+<li><p>Next, a Deep Learning model predicts how much the article is positive or negative based on the vector representation of its text. </p></li>
+<li><p>Finally, a meta model (ensemble learning) uses the output of all these 3 models to generate a final score.</p></li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<p>Snippets of articles with a <strong>negative sentiment</strong> about a publicly traded equity - Tesco Inc</p>
+
+<ul>
+<li><p><strong>Tesco strike to escalate</strong> - &ldquo;Over 2-thousand staff in 22 Tesco stores will be on strike by the middle of next week. Another 24 stores were balloted for industrial action by Mandate over the past three nights - 6 agreed to join the 16 stores currently on the picket line.
+The retailer says the results of the ballot mean there&rsquo;s an onus on the union to call-off the strike&hellip;.&rdquo;</p></li>
+<li><p><strong>Striking Tesco workers will not have Family Income Supplement suspended</strong> - &ldquo;The ongoing strike at a number of Tesco stores has been suspended from this morning after both sides in the dispute agreed to attend discussions at the invitation of the Labour Court.
+Tesco has confirmed that it will not make any changes to pre-1996 terms and conditions whilst this process is ongoing. The Mandate trade union said all pickets will be suspended and the talks are expected to get under way this weekend&hellip;.&rdquo;</p></li>
+<li><p><strong>Tesco workers shouldn’t lose Family Income Supplement</strong> - &ldquo;This would be a completely unfair and mean spirited move. I believe that there is scope under the current legislation for the Minister to direct that no such decision is made. &lsquo;By engaging in strike action, the workers are already seeing a reduction in their take home pay; a cut to their FIS payment will devastate families&hellip;.&rsquo;&rdquo;</p></li>
+</ul>
+
+<h2 id="sentiment-story_sentiment">Sentiment (story_sentiment)</h2>
+
+<p><strong>What is it?</strong> An average of all the sentiment scores of articles that fall into this story until now.
+<strong>NOTE:</strong> If there is only one article in a story so far, then its <strong>first_mention=TRUE</strong> , and <strong>story_sentiment</strong> equals <strong>article_sentiment</strong>.</p>
+
+<p><strong>Quick Definition:</strong> aggregates article sentiment and calculate the average sentiment for each story</p>
+
+<p><strong>How is it created?</strong> Article sentiments calculated via the procedure explained in the above <a href="#sentiment-article_sentiment">Article Sentiment Section</a> are all aggregated and the average is calculated.
+As the story grows, the overall sentiment keeps changing and a trend can be captured with time.</p>
+
+<p><strong>Examples</strong></p>
+
+<p>Looking at articles reporting on <strong>company earnings</strong> of Baidu (BIDU), there exist mixed reviews from different sources.
+Interestingly, the overall story sentiment saturated to end up as positive as more and more articles were posted.</p>
+
+<p>Initial Negative articles - </p>
+
+<ul>
+<li><strong>Baidu&rsquo;s quarterly revenue falls 2.6 percent</strong> - &ldquo;Baidu Inc reported a second straight drop in quarterly revenue as regulatory scrutiny into healthcare and related advertisements continued to take a toll on the Chinese internet search giant. The drop, however, was within the 17.84-18.38 billion yuan range the company had previously forecast. Analysts estimate that healthcare accounts for about 20-30 percent of Baidu&rsquo;s search revenue, which represents more than 80 percent of the company&rsquo;s total sales&hellip;.&rdquo;</li>
+</ul>
+
+<p>Dispersed Positive articles - </p>
+
+<ul>
+<li><p><strong>Baidu reports stable 2016 revenue growth</strong> - &ldquo;Chinese Internet giant Baidu reported stable revenue growth in 2016, helped in part by artificial intelligence (AI) upgrades to its various products. Baidu continued to see stable user growth for its search and map services, with its mobile payment business Baidu Wallet attracting 100 million users by the end of 2016, surging 88 percent compared with 2015&hellip;.&rdquo;</p></li>
+<li><p><strong>Baidu posts bleak fourth quarter, but sees business reshuffle driving 2017 growth</strong> - &ldquo;Baidu Inc&rsquo;s revenue fell for a second straight quarter, hurt by a government crackdown on healthcare advertising, but the internet search giant expects a rebound this year as it retools to find growth outside its core ad business. The company has stumbled over the past few years - firstly from a cash-burning subsidy war with rivals such as Alibaba in businesses like food delivery, movie tickets and taxi hailing&hellip;.&rdquo;</p></li>
+</ul>
+
+<h2 id="accern-rank-overall_source_rank">Accern Rank(overall_source_rank)</h2>
+
+<p><strong>What is it?</strong> Accern Rank identifies if the information from a source is posted promptly and if that information will go viral (similar articles published by others).
+<strong>Rank 1</strong> is lowest and <strong>Rank 10</strong> is highest.
+<strong>In other words,</strong> it lets you know which sources usually are among the first to publish articles on a new story and also informs if they have a knack at posting on stories that become wide spread.</p>
+
+<p><strong>Quick Definition:</strong></p>
+
+<ul>
+<li><p><strong>overall_source_rank</strong> - determines if the SOURCE is <em>reliable</em> at releasing trending stories. i.e. reliable indicating ability to post early and trending indicating potential of wide spread stories.</p></li>
+<li><p><strong>overall_author_rank</strong> - determines if the AUTHOR is <em>reliable</em> at releasing trending stories. </p></li>
+</ul>
+
+<aside class="notice">
+Difference between source and author? Source is the website. Ex NYT or Bloomberg. Author is the writer within the organization.
+In the below examples we use fictional name John Paul.
+</aside>
+
+<p><strong>How is it created?</strong> A graphical model takes into account historical data (past articles), how certain news appeared in the past and how the distribution of articles within a story looked like.
+It checks in the past, which sources posted faster in comparison to other sources which then posted contextually similar articles.</p>
+
+<p><strong>Examples</strong></p>
+
+<ul>
+<li><p><strong>Overall Source Rank (High)</strong> - StreetInsider releases stories first, and their stories get republished by many other sources.</p></li>
+<li><p><strong>Overall Author Rank (Low-Mid)</strong> - <em>John Paul</em><sup>*</sup> releases stories on StreetInsider first, but his stories don’t get republished by any other authors.</p></li>
+</ul>
+
+<p><sup>*</sup></p>
+
+<h2 id="accern-rank-event_source_rank">Accern Rank(event_source_rank)</h2>
+
+<p><strong>What is it?</strong> Ranks are based on the same Accern Rank model which tries to predict promptness and ability to post republished stories.
+<strong>Rank 1</strong> is lowest and <strong>Rank 10</strong> is highest.
+<strong>event_source_rank/event_author_rank</strong> is more precise. 
+For ex. Tumblr posts rumors faster than others. Bloomberg posts financial docs faster than others.
+It would be prudent to the client to notice that sources will have varied ranks for different events.</p>
+
+<p><strong>Quick Definition:</strong></p>
+
+<ul>
+<li><p><strong>event_source_rank</strong> - determines if the SOURCE is <em>reliable</em> at releasing articles associated with a financial event. </p></li>
+<li><p><strong>event_author_rank</strong> - determines if the AUTHOR is <em>reliable</em> at releasing articles associated with a financial event.. </p></li>
+</ul>
+
+<p><strong>How is it created?</strong> The ranking model is the same. Ranks are calculated by filtering based on financial events.</p>
+
+<p><strong>Examples</strong></p>
+
+<ul>
+<li><p><strong>Event Source Rank (High)</strong> - StreetInsider releases lawsuit stories first, and their lawsuit stories get republished by many other sources.</p></li>
+<li><p><strong>Event Author Rank (Low-Mid)</strong> - <em>John Paul</em><sup>*</sup> releases lawsuit stories on StreetInsider late, but his stories are republished by some authors.</p></li>
+</ul>
+
+<h2 id="saturation-story_saturation">Saturation (story_saturation)</h2>
+
+<p><strong>What is it?</strong> The online exposure of the story i.e. have a lot of people seen this story/information already?
+This is one of the useful metrics possible thanks to <a href="#story-classification">story classification</a>.
+<strong>Note:</strong> Twitter tweets takes into account the number of followers, retweets, and other metrics that twitter user has.</p>
+
+<p><strong>Quick Definition:</strong> gauge the current potential exposure of a story</p>
+
+<p><strong>How is it created?</strong> Based on web traffic information (provided by Alexa Rank) of related articles and previous historical data, we predict the exposure of the story into different levels  - low, mid, &amp; high.</p>
+
+<p>3-Step Process for Computing Saturation</p>
+
+<ul>
+<li><p>Step 1: accumulate web traffic per story
+We accumulate total web traffic based on all related articles per story</p></li>
+<li><p>Step 2: average web traffic per story
+We look back at all similar stories’ total web traffic and take an average per story </p></li>
+<li><p>Step 3: segment average story web traffic
+We segment the average story web traffic into low, mid, and high saturation </p></li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<ul>
+<li><p>Saturation (High) - story published on 100+ websites</p></li>
+<li><p>Saturation (High) - story published on two major newswires</p></li>
+<li><p>Saturation (Low) - story published on one medium-traffic website</p></li>
+<li><p>Saturation (Low) - story published on five small websites</p></li>
+</ul>
+
+<h2 id="impact-_overall">Impact (_overall)</h2>
+
+<p><strong>What is it?</strong> When a certain type of story appears in media, calculate the probability that the stock price of the company moves up/down by more than 1% by EOD.
+Overall Impact score checks how an event like <strong>Company Earnings</strong> generally has high impact compared to other events.
+Overall Impact Score is an average across all the <strong>entity_impact_scores</strong> for different companies.</p>
+
+<p><strong>Quick Definition (event_impact_score_overall):</strong> determines if an event has a chance of affecting stock prices of companies in general by more than 1% at the end of the trading day.</p>
+
+<p><strong>How is it created?</strong> An example of a retrospective metric. Looking back in history archive, how market behaved for a past similar event is evaluated.
+In brief, by overlaying 3+ years of financial events data with stock prices market data, we determine if the event has a chance of moving the stock price of companies in general by more than 1% by the end of the day.</p>
+
+<p><strong>Examples</strong></p>
+
+<ul>
+<li>Event Impact Score Overall (High) - In the past 3 years, whenever a lawsuit happened, it affected the stock prices of companies in general by 1% or more EOD.</li>
+</ul>
+
+<h2 id="impact-_on_entities">Impact (_on_entities)</h2>
+
+<p><strong>What is it?</strong> Entity Impact Score is more precise as it it returns a probability that particular event will affect SPECIFIC equities.
+For example, <strong>event_impact_score_on_entities</strong> of 90 for <em>Apple and &lsquo;Mergers &amp; Acquisition&rsquo; event</em> conveys this sort of story/theme moved the market before in the past and there is a high likelihood now as well.
+Also, this event can vary in impact score for different companies.</p>
+
+<p><strong>Quick Definition (event_impact_score_on_entities:)</strong> determines if an event has a chance of affecting the stock price of the mentioned company by more than 1% at the end of the trading day.</p>
+
+<p><strong>How is it created?</strong> Using the same procedure to calculate overall impact score of an event, this process filters based on every entity and calculates respective probabilities.</p>
+
+<p><strong>Examples</strong></p>
+
+<blockquote>
+<p>Sample Snippet</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"...."</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"event_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Financial Results"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company Earnings"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"event_impact_score"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"overall"</span><span class="p">:</span><span class="w"> </span><span class="mf">48.55540720961282</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"on_entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EBAY"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AMZN"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"on_entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<ul>
+<li><p>Considering the <strong>right-side snippet</strong>, we see that the results of Company Earnings reports have a lower impact on EBay and Amazon compared to all the companies overall.</p></li>
+<li><p>Similarly, an event involving Criminal Actions/Fraud may have a high overall impact (event_impact_score.overall), but certain entities like Google are impacted 50% less. (event_impact_score.on_entities.on_entity)</p></li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="r">r</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
